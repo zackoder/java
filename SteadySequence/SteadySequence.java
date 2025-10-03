@@ -1,0 +1,23 @@
+import java.util.Arrays;
+
+public class SteadySequence {
+    public int longestSequence(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        Arrays.sort(nums);
+        int maxLength = 1;
+        int currentLength = 1;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1] + 1) { // { 1, 2, 3, 4, 100, 200 }
+                currentLength++; // 1, 2, 3, 4
+            } else if (nums[i] != nums[i - 1]) {
+                currentLength = 1;
+            }
+            maxLength = Math.max(maxLength, currentLength);
+        }
+        return maxLength;
+    }
+}
